@@ -1,84 +1,162 @@
-# Turborepo starter
+# TixGenius
 
-This Turborepo starter is maintained by the Turborepo core team.
+TixGenius is a full-stack application for managing event tickets, built with a modern tech stack using a monorepo architecture.
 
-## Using this example
+## 📚 Tech Stack
 
-Run the following command:
+### Frontend
+- **Next.js 14**: React framework with server-side rendering and static site generation
+- **React**: UI component library
+- **TypeScript**: Type-safe JavaScript
+- **Tailwind CSS**: Utility-first CSS framework
 
-```sh
-npx create-turbo@latest
-```
+### Backend
+- **Express.js**: Fast, unopinionated, minimalist web framework for Node.js
+- **TypeScript**: Type-safe JavaScript
+- **Node.js**: JavaScript runtime built on Chrome's V8 JavaScript engine
 
-## What's inside?
+### Tools & Infrastructure
+- **Turborepo**: High-performance build system for JavaScript/TypeScript monorepos
+- **ESLint**: Static code analysis tool for identifying problematic patterns
+- **Prettier**: Opinionated code formatter
+- **Husky & lint-staged**: Git hooks for running linters and tests before commits
+- **GitHub Actions**: CI/CD pipeline for automated testing and deployment
+- **Docker**: Containerization for consistent deployments
 
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
+## 🏗️ Project Structure
 
 ```
-cd my-turborepo
-pnpm build
+TixGenius/
+├── apps/                      # Application packages
+│   ├── backend/               # Express.js API
+│   └── frontend/              # Next.js front-end
+├── packages/                  # Shared packages
+│   ├── eslint-config/         # ESLint configurations
+│   ├── shared/                # Shared types and utilities
+│   ├── typescript-config/     # TypeScript configurations
+│   └── ui/                    # Shared UI components
+├── .github/                   # GitHub configuration
+│   └── workflows/             # GitHub Actions CI/CD
+└── ...root configuration files
 ```
 
-### Develop
+## 🚀 Getting Started
 
-To develop all apps and packages, run the following command:
+### Prerequisites
+
+- Node.js 18.x or higher
+- npm 10.x or higher
+- Git
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/tixgenius.git
+   cd tixgenius
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables:
+   ```bash
+   # Copy example .env files in both apps
+   cp apps/backend/.env.example apps/backend/.env
+   cp apps/frontend/.env.example apps/frontend/.env
+   ```
+
+4. Run the development environment:
+   ```bash
+   npm run dev
+   ```
+
+This will start both the frontend and backend in development mode:
+- Frontend: [http://localhost:3000](http://localhost:3000)
+- Backend: [http://localhost:3001](http://localhost:3001)
+
+## 🔧 Development Workflow
+
+### Available Scripts
+
+- `npm run dev` - Start all applications in development mode
+- `npm run build` - Build all applications and packages
+- `npm run lint` - Run ESLint on all projects
+- `npm run format` - Format code with Prettier
+- `npm run typecheck` - Run TypeScript type checking
+- `npm run test` - Run tests
+
+### Adding a New Feature
+
+1. Create a new branch from `main`:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+2. Make your changes and commit them using conventional commit messages:
+   ```bash
+   git commit -m "feat: add new feature"
+   ```
+
+3. Push your branch and create a pull request:
+   ```bash
+   git push -u origin feature/your-feature-name
+   ```
+
+## 🌍 Deployment
+
+### Docker Deployment
+
+The project includes Dockerfiles for both frontend and backend. To build and run the Docker containers:
+
+```bash
+# Build and run backend
+cd apps/backend
+docker build -t tixgenius-backend .
+docker run -p 3001:3001 tixgenius-backend
+
+# Build and run frontend
+cd apps/frontend
+docker build -t tixgenius-frontend .
+docker run -p 3000:3000 tixgenius-frontend
+```
+
+### CI/CD Pipeline
+
+The project uses GitHub Actions for CI/CD:
+- On Pull Requests: Run linters, type checking, and tests
+- On merge to main: Build and publish Docker images to GitHub Container Registry
+
+## 📐 Architecture Diagram
 
 ```
-cd my-turborepo
-pnpm dev
+┌────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│                │     │                 │     │                 │
+│   Frontend     │────►│  Backend API    │────►│   Database      │
+│   (Next.js)    │     │  (Express.js)   │     │                 │
+│                │     │                 │     │                 │
+└────────────────┘     └─────────────────┘     └─────────────────┘
+        │                      │                        │
+        ▼                      ▼                        ▼
+┌────────────────────────────────────────────────────────────────┐
+│                                                                │
+│                  Shared Components & Types                     │
+│                                                                │
+└────────────────────────────────────────────────────────────────┘
 ```
 
-### Remote Caching
+## 📄 License
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+This project is licensed under the ISC License.
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+## 👥 Contributing
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/docs/reference/command-line-reference)
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'feat: add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request

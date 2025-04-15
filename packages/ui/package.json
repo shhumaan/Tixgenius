@@ -1,27 +1,42 @@
 {
-  "name": "@repo/ui",
-  "version": "0.0.0",
+  "name": "@tixgenius/ui",
+  "version": "1.0.0",
   "private": true,
+  "description": "Shared UI components for TixGenius",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
-    "./*": "./src/*.tsx"
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles.css": "./dist/index.css"
   },
+  "files": [
+    "dist/**"
+  ],
   "scripts": {
-    "lint": "eslint . --max-warnings 0",
-    "generate:component": "turbo gen react-component",
-    "check-types": "tsc --noEmit"
+    "build": "tsup src/index.tsx --format esm,cjs --dts --external react --external react-dom --clean",
+    "dev": "tsup src/index.tsx --format esm,cjs --dts --external react --external react-dom --watch",
+    "lint": "eslint . --ext .ts,.tsx --max-warnings 0",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0 || ^19.0.0",
+    "react-dom": "^18.2.0 || ^19.0.0"
   },
   "devDependencies": {
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
-    "@turbo/gen": "^2.5.0",
-    "@types/node": "^22.14.0",
-    "@types/react": "19.1.0",
-    "@types/react-dom": "19.1.1",
-    "eslint": "^9.24.0",
-    "typescript": "5.8.2"
-  },
-  "dependencies": {
+    "@tixgenius/eslint-config": "file:../eslint-config",
+    "@tixgenius/typescript-config": "file:../typescript-config",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.1",
+    "eslint": "^8.57.0",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "tsup": "^8.2.3",
+    "typescript": "^5.8.3"
   }
 }
