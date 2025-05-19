@@ -21,9 +21,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "^5.13.1",
-    "bcrypt": "^5.1.1",
-    "connect-redis": "^7.1.1",
+    "@prisma/client": "^6.8.2",
+    "bcrypt": "^6.0.0",
+    "connect-redis": "^8.0.3",
     "express": "^5.1.0",
     "express-session": "^1.18.0",
     "ioredis": "^5.3.2",
@@ -38,11 +38,11 @@
     "@types/express": "^5.0.1",
     "@types/express-session": "^1.18.0",
     "@types/jsonwebtoken": "^9.0.6",
-    "@types/node": "^22.14.1",
+    "@types/node": "^22.15.18",
     "concurrently": "^9.1.2",
-    "eslint": "^8.57.0",
+    "eslint": "^9.27.0",
     "nodemon": "^3.1.9",
-    "prisma": "^5.13.1",
+    "prisma": "^6.8.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   }
